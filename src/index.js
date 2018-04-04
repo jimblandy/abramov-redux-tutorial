@@ -1,8 +1,6 @@
 // -*- mode: js-jsx -*-
 
-import PropTypes from 'prop-types';
 import React from 'react';
-import { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider, connect } from 'react-redux';
 import { createStore } from 'redux';
@@ -81,36 +79,16 @@ const Link = ({ active, onClick, children }) => {
   );
 };
 
-class FilterLink extends Component {
-  componentDidMount() {
-    const { store } = this.context;
-    this.unsubscribe = store.subscribe(() =>
-      this.forceUpdate()
-    );
-  }
-
-  componentWillUnmount() {
-    this.unsubscribe();
-  }
-
-  render() {
-    const { props, context: { store } } = this;
-    const state = store.getState();
-
-    return (
-      <Link
-        active={props.filter === state.visibilityFilter}
-        onClick={() => {
-          store.dispatch({ type: 'SET_VISIBILITY_FILTER', filter: props.filter });
-        }}>
-        {props.children}
-      </Link>
-    );
-  }
-}
-FilterLink.contextTypes = {
-  store: PropTypes.object
-};
+const FilterLink = connect(
+  (state, { filter }) => ({
+    active: filter === state.visibilityFilter
+  }),
+  (dispatch, { filter } ) => ({
+    onClick: () => {
+      dispatch({ type: 'SET_VISIBILITY_FILTER', filter });
+    }
+  })
+)(Link);
 
 const Footer = () => (
   <p>
