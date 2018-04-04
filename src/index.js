@@ -8,23 +8,20 @@ import { Provider, connect } from 'react-redux';
 import { createStore } from 'redux';
 import { todoApp } from './todos';
 
-const AddTodo = (props, { store }) => {
+const AddTodo = connect()(({ dispatch }) => {
   let input;
   return (
     <div>
       <input ref={node => { input = node; }} />
       <button onClick={() => {
-          store.dispatch({ type: 'ADD_TODO', id: nextTodoId++, text: input.value });
+          dispatch({ type: 'ADD_TODO', id: nextTodoId++, text: input.value });
           input.value = '';
       }}>
         Add Todo
       </button>
     </div>
   );
-};
-AddTodo.contextTypes = {
-  store: PropTypes.object
-};
+});
 
 const Todo = ({ onClick, completed, text }) => (
   <li
