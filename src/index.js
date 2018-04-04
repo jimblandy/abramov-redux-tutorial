@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { todoApp } from './todos';
 
@@ -94,7 +95,7 @@ const Link = ({ active, onClick, children }) => {
     return <span>{children}</span>;
 
   return (
-    <a href='#'
+    <a href='#link'
        onClick={e => {
          e.preventDefault();
          onClick();
@@ -152,21 +153,6 @@ const TodoApp = () => (
     <Footer/>
   </div>
 );
-
-class Provider extends Component {
-  getChildContext() {
-    return {
-      store: this.props.store
-    };
-  }
-
-  render() {
-    return this.props.children;
-  }
-}
-Provider.childContextTypes = {
-  store: PropTypes.object
-};
 
 ReactDOM.render(
   <Provider store={createStore(todoApp)}>
