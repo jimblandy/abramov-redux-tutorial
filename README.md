@@ -29,9 +29,9 @@ that going through one tutorial is still a pretty small step.
 
 ## Running the code
 
-Abramov does all his development in a jsbin. I wanted to be able to use Emacs,
-git, and the nifty react-scripts, so I converted it into a [yarn] package; yarn
-is something like npm, and that's all I know.
+In the tutorial, Abramov does all his development in a jsbin. I wanted to be
+able to use Emacs, git, and the nifty react-scripts, so I converted it into a
+[yarn] package; yarn is something like npm, and that's all I know.
 
 To get started, make sure you have yarn installed, and then this should work:
 
