@@ -4,7 +4,7 @@ I've just finished working through Dan Abramov's [Redux tutorial][tut] at egghea
 and I can't recommend it highly enough. I'm not a front end developer at all,
 but I'm curious to see what techniques people have come up with to make web
 development more tractible, and React and Redux's emphasis on pure functions
-make them especially interesting. (Yes, I'm going to do an [Elm tutorial] next.)
+make them especially interesting. (Yes, I'm going to do an [Elm tutorial][elm] next.)
 
 The tutorial videos are exceptionally well-done, in my opinion. It's structured
 as a series of small refinements with each step yielding working code that you
