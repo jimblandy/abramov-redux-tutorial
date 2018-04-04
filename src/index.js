@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { todoApp } from './todos';
 
-const AddTodo = () => {
+const AddTodo = ({ store }) => {
   let input;
   return (
     <div>
@@ -57,7 +57,7 @@ const getVisibleTodos = (todos, filter) => {
 
 class VisibleTodoList extends Component {
   componentDidMount() {
-    this.unsubscribe = store.subscribe(() =>
+    this.unsubscribe = this.props.store.subscribe(() =>
       this.forceUpdate()
     );
   }
@@ -67,6 +67,7 @@ class VisibleTodoList extends Component {
   }
 
   render() {
+    const store = this.props.store;
     const state = store.getState();
 
     return (
@@ -97,7 +98,7 @@ const Link = ({ active, onClick, children }) => {
 
 class FilterLink extends Component {
   componentDidMount() {
-    this.unsubscribe = store.subscribe(() =>
+    this.unsubscribe = this.props.store.subscribe(() =>
       this.forceUpdate()
     );
   }
@@ -108,6 +109,7 @@ class FilterLink extends Component {
 
   render() {
     const props = this.props;
+    const store = props.store;
     const state = store.getState();
 
     return (
@@ -122,27 +124,25 @@ class FilterLink extends Component {
   }
 }
 
-const Footer = () => (
+const Footer = ({ store }) => (
   <p>
     Show:
-    {' '} <FilterLink filter='SHOW_ALL'>All</FilterLink>
-    {' '} <FilterLink filter='SHOW_ACTIVE'>Active</FilterLink>
-    {' '} <FilterLink filter='SHOW_COMPLETED'>Completed</FilterLink>
+    {' '} <FilterLink filter='SHOW_ALL'       store={store}>All</FilterLink>
+    {' '} <FilterLink filter='SHOW_ACTIVE'    store={store}>Active</FilterLink>
+    {' '} <FilterLink filter='SHOW_COMPLETED' store={store}>Completed</FilterLink>
   </p>
 );
 
 let nextTodoId = 0;
-const TodoApp = () => (
+const TodoApp = ({ store }) => (
   <div>
-    <AddTodo />
-    <VisibleTodoList />
-    <Footer />
+    <AddTodo         store={store}/>
+    <VisibleTodoList store={store}/>
+    <Footer          store={store}/>
   </div>
 );
 
-const store = createStore(todoApp);
-
 ReactDOM.render(
-  <TodoApp />,
+  <TodoApp store={createStore(todoApp)}/>,
   document.getElementById('root')
 );
