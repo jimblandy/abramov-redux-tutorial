@@ -1,6 +1,6 @@
 # Code for Redux Tutorial
 
-I've just finished working through Dan Abramov's [Redux tutorial] at egghead.io,
+I've just finished working through Dan Abramov's [Redux tutorial][tut] at egghead.io,
 and I can't recommend it highly enough. I'm not a front end developer at all,
 but I'm curious to see what techniques people have come up with to make web
 development more tractible, and React and Redux's emphasis on pure functions
